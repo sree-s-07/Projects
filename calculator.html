@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(201, 198, 198);
+
+
+        }
+
+        .main {
+            height: 340px;
+            width: 200px;
+            border-radius: 10px;
+            border: 2px solid black;
+            /* background-color: grey; */
+            background-color: black;
+
+        }
+
+
+        input {
+            width: 90%;
+            height: 50px;
+            margin-top: 10px;
+            margin-left: 8px;
+            font-size: 30px;
+            padding: 0px 3px;
+            outline: none;
+            border-radius: 6px;
+            box-shadow: 2px 5px 15px grey;
+            text-align: right;
+            /* background-color: white; */
+            background-color: black;
+            color: white;
+        }
+
+        ul {
+            display: flex;
+            margin-top: 15px;
+            margin-left: 10px;
+            gap: 7px;
+        }
+
+        button {
+            height: 38px;
+            width: 40px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid rgb(81, 79, 79) 0.3;
+            transition: 0.5s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #equal {
+            height: 38px;
+            width: 40px;
+            background-color: orange;
+            border: none;
+            box-shadow: 3px 3px 3px black;
+        }
+
+        h3 {
+            font-family: cursive;
+            font-size: 12px;
+            margin-left: -70px;
+            text-shadow: 5px 5px 10px black;
+        }
+        .zero{
+            width: 86px;
+            border-radius: 20px;
+        }
+        .orange{
+            background-color: orange;
+        }
+        .grey{
+            background-color: rgb(163, 154, 154);
+            
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h3>Created By Shree-7</h3>
+        <div class="main">
+
+            <input type="text" name="" id="screen" disabled>
+            
+            <ul>
+                <button class="grey" onclick="DelLast()">Del</button>
+                <button class="grey" onclick="getNumber(innerText)">+</button>
+                <button class="grey" onclick="getNumber(innerText)">-</button>
+                <button class="orange" onclick="Reset()"><i class="bi bi-arrow-repeat"></i></button>
+            </ul>
+
+            <ul>
+                <button onclick="getNumber(innerText)">7</button>
+                <button onclick="getNumber(innerText)">8</button>
+                <button onclick="getNumber(innerText)">9</button>
+                <button class="orange" onclick="getNumber(innerText)">*</button>
+            </ul>
+
+            <ul>
+                <button onclick="getNumber(innerText)">4</button>
+                <button onclick="getNumber(innerText)">5</button>
+                <button onclick="getNumber(innerText)">6</button>
+                 <button class="orange" onclick="getNumber(innerText)">%</button>
+            </ul>
+
+            <ul>
+                <button onclick="getNumber(innerText)">1</button>
+                <button onclick="getNumber(innerText)">2</button>
+                <button onclick="getNumber(innerText)">3</button>
+                <button class="orange" onclick="getNumber(innerText)">/</button>
+            </ul>
+
+
+            <ul>
+                <button class="zero" onclick="getNumber(innerText)">0</button>
+                <button onclick="getNumber(innerText)">.</button>
+                <button onclick="Calculate()" id="equal">=</button>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        function getNumber(btnValue) {
+            let screen = document.getElementById('screen').value += btnValue
+        }
+
+        function Calculate() {
+            let screen = document.getElementById('screen').value
+            document.getElementById('screen').value = eval(screen)
+        }
+
+        function Reset() {
+            let screen = document.getElementById('screen').value = ''
+        }
+
+        function DelLast() {
+            let screen = document.getElementById('screen')
+            screen.value = screen.value.slice(0, -1)  
+        }
+      
+    </script>
+</body>
+</html>
