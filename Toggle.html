@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Lite Mode</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            height: 100vh;
+            transition: 0.5s ease-in-out;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHGOkFTi2WOfSffQ2095t7s5ap5XdAvknCgQ&s');
+            background-size: cover;
+            background-position: center;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            height: 50px;
+            width: 100px;
+            border-radius: 30px;
+            background-color: grey;
+        }
+
+        .slider {
+            position: relative;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: white;
+            top: 5px;
+            left: 5px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .moon {
+            line-height: 40px;
+            color: white;
+        }
+
+        .sun {
+            color: orange;
+            font-size: 25px;
+            position: relative;
+            top: 7px;
+        }
+
+        .sunImg  {
+            position: absolute;
+            top: -50px;
+            left: 50px;
+            transition: transform 1.5s ease;
+        }
+        .moonImg{
+            right: 150px;
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            transition: transform 1.5s ease;
+            transform: translateY(400px);
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section">
+
+        <img class="sunImg"
+            src="https://www.freeiconspng.com/thumbs/sun/natural-energy-source-the-sun-transparent-photos-3.png" alt="">
+
+        <img class="moonImg" src="https://www.pngfind.com/pngs/b/603-6033801_ftestickers-sky-moon-glowing-blackandwhite-fantasy-png-transparent.png" alt="">
+        <div class="container">
+            <div class="slider">
+                <i class="sun bi-brightness-high-fill"></i>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let myBtn = document.querySelector('.container')
+        let mySection = document.querySelector('.section')
+        let mySlider = document.querySelector('.slider')
+        let mySun = document.querySelector('.sunImg')
+        let myMoon = document.querySelector('.moonImg')
+        let isDark = false;
+
+
+        myBtn.addEventListener('click', function () {
+            if (isDark == false) {
+
+                mySun.style.transform = "translateY(700px)";
+                myMoon.style.transform = "translateY(-250px)";
+                
+                document.body.style.backgroundColor = "black"
+                mySlider.style.left = '55px'
+                isDark = true;
+                mySlider.style.backgroundColor = 'black'
+                mySlider.innerHTML = `<i class="moon
+                 bi-moon-fill"></i>`
+                document.body.style.backgroundImage = 'url("https://images.pexels.com/photos/355887/pexels-photo-355887.jpeg")'
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundPosition = "center";
+                document.body.style.backgroundRepeat = "no-repeat"; 
+
+            }
+            else {
+
+                mySun.style.transform = "translateY(-50px)";
+                myMoon.style.transform = "translateY(500px)";
+
+                document.body.style.backgroundColor = "white"
+                mySlider.style.left = '5px'
+                isDark = false
+                mySlider.style.backgroundColor = 'white'
+                mySlider.innerHTML = `<i class="sun bi-brightness-high-fill"></i>`
+                document.body.style.backgroundImage = 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHGOkFTi2WOfSffQ2095t7s5ap5XdAvknCgQ&s")'
+
+            }
+        })
+    </script>
+</body>
+
+</html>
