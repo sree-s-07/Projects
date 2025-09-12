@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Bulb Controler</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            gap: 40px;
+        }
+
+        .control_area,
+        .bulb_area {
+            height: 300px;
+            width: 300px;
+        }
+
+        /* Bulb Structure Start Here */
+        .filament {
+            width: 130px;
+            height: 130px;
+            position: relative;
+            top: 40px;
+            left: 85px;
+            border-radius: 50%;
+            border: 1px solid white;
+        }
+
+        .base {
+            width: 40px;
+            height: 49px;
+            border: 1px solid white;
+            position: relative;
+            top: 40px;
+            left: 130px;
+            border-radius: 20px 20px 10px 10px;
+            overflow: hidden;
+            background-color: grey;
+        }
+
+        .end {
+            height: 10px;
+            width: 15px;
+            border: 1px solid white;
+            position: relative;
+            top: 40px;
+            left: 142px;
+            border-radius: 0px 0px 3px 3px;
+        }
+
+        h2 {
+            color: white;
+            font-size: 20px;
+            position: relative;
+            top: 50px;
+            left: 47px;
+        }
+
+        hr {
+            margin-top: 10px;
+        }
+
+        /* Bulb Structure End Here */
+
+        .control_area {
+            text-align: center;
+        }
+
+        input {
+            width: 200px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            padding: 5px;
+        }
+
+        button {
+            height: 20px;
+            width: 80px;
+            border-radius: 10px;
+        }
+
+        #onBtn {
+            background-color: green;
+        }
+
+        #offBtn {
+            background-color: red;
+        }
+
+        #resetBtn {
+            background-color: rgb(72, 72, 229);
+        }
+
+        #label {
+            color: white;
+            position: relative;
+            top: 60px;
+            text-align: center;
+        }
+
+        #label2 {
+            color: white;
+            position: relative;
+            top: 70px;
+            text-align: center;
+        }
+
+        .line_two {
+            position: relative;
+            top: -45px;
+            left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="control_area">
+            <br> <input type="text" id="colorInput" list="colorList" placeholder="Enter color (e.g. red)">
+            <datalist id="colorList">
+                <option value="cyan">
+                <option value="orange">
+                <option value="deeppink">
+                <option value="yellow">
+                <option value="green">
+                <option value="blue">
+                <option value="skyblue">
+                <option value="violet">
+                <option value="magenta">
+                <option value="gold">
+                <option value="tomato">
+                <option value="lime">
+            </datalist>
+            <br><br>
+            <input type="text" id="labelInput" placeholder="Enter label"><br><br>
+            <button id="setColorBtn" onclick="set_Color()">Set Color</button><br><br>
+            <button id="setLabelBtn" onclick="set_Label()">Set Label</button><br><br>
+            <button id="onBtn" onclick="turnOn()">Turn On</button>
+            <button id="offBtn" onclick="turnOff()">Turn Off</button><br><br>
+            <button id="resetBtn" onclick="resetAll()">Reset</button><br><br>
+        </div>
+        <div class="bulb_area">
+            <div class="filament">
+                <h2>/\/\/\</h2>
+                <div class="line_one">
+                    <h2>|</h2>
+                    <h2>|</h2>  
+                </div>
+                <div class="line_two">
+                    <h2>|</h2>
+                    <h2>|</h2>
+                </div>
+            </div>
+            <div class="base">
+                <hr>
+                <hr>
+            </div>
+            <div class="end">
+
+            </div>
+            <p id="label"></p>
+            <p id="label2"></p>
+        </div>
+    </section>
+
+    <script>
+        let colorType = 'orange';
+        function set_Color() {
+            let color_name = document.querySelector('#colorInput').value;
+            colorType = color_name;
+            document.querySelector('#colorInput').value = ''
+            document.querySelector('#label').innerText = `${colorType} color is set`
+        }
+
+        function set_Label() {
+            let Label = document.querySelector('#labelInput').value
+            document.querySelector('#label2').innerText = Label
+            document.querySelector('#labelInput').value = ''
+        }
+
+        function turnOn() {
+            let bulb_color = document.querySelector('.filament');
+            bulb_color.style.backgroundColor = colorType
+            bulb_color.style.boxShadow = `0 0 60px 50px ${colorType}`;
+            bulb_color.style.border = `1px solid ${colorType}`;
+            document.querySelector('#label').innerText = 'Bulb On'
+        }
+
+        function turnOff() {
+            let bulb_color = document.querySelector('.filament');
+            bulb_color.style.backgroundColor = null
+            bulb_color.style.boxShadow = null
+            bulb_color.style.border = '1px solid white'
+            document.querySelector('#label').innerText = 'Bulb Off'
+        }
+
+        function resetAll() {
+            turnOff();
+            document.querySelector('#label').innerText = ''
+            document.querySelector('#label2').innerText = ''
+            colorType = 'orange'
+        }
+    </script>
+</body>
+
+</html>
