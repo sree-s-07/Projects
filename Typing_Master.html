@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            overflow: hidden;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .paragraph {
+            height: 250px;
+            width: 800px;
+            border: 2px solid black;
+            background-color: rgb(186, 182, 182);
+            padding: 20px;
+            font-size: 20px;
+        }
+
+        .typingArea {
+            height: 250px;
+            width: 800px;
+            border: 2px solid black;
+        }
+
+        .textArea {
+            height: 100%;
+            width: 100%;
+            border: none;
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        .buttonDiv {
+            height: 150px;
+            width: 150px;
+            border: 2px solid black;
+            position: absolute;
+            left: 1160px;
+            bottom: 430px;
+            text-align: center;
+        }
+
+        .Start {
+            padding: 10px 20px;
+        }
+
+        .time {
+            font-size: 30px;
+            margin: 15px 0px;
+        }
+
+        .getInfo {
+            height: 155px;
+            width: 200px;
+            border: 2px solid black;
+            position: absolute;
+            left: 40px;
+            bottom: 430px;
+            text-align: center;
+        }
+
+        input {
+            padding: 5px;
+            margin: 8px;
+        }
+
+        .submit {
+            padding: 10px 30px;
+            margin: 10px;
+        }
+
+        .result {
+            color: green;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .result2 {
+            color: red;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h2>Typing Master</h2>
+        <div class="main">
+            <div class="paragraph">
+
+            </div>
+            <div class="typingArea">
+                <textarea class="textArea" name="" id="" placeholder="Start Typing Here...!"></textarea>
+            </div>
+        </div>
+        <div class="buttonDiv">
+            <p>Time in Seconds You have</p>
+            <p class="time">--Set--</p>
+            <button class="Start">Start</button>
+        </div>
+        <div class="getInfo">
+
+            <input type="number" id="getTime" placeholder="Enter Time In Seconds">
+            <input type="text" id="getPara" placeholder="Enter Para You Want..!">
+            <button class="submit">Enter</button>
+
+        </div>
+    </section>
+
+    <script>
+        let Timer;
+        let leftTime;
+        let intervalId;
+        let paragraphValue = "";
+
+        let userTime = document.querySelector('#getTime')
+        let userPara = document.querySelector('#getPara')
+        let Paragraph = document.querySelector('.paragraph')
+        let Time = document.querySelector('.time')
+        let enterBtn = document.querySelector('.submit')
+        let textArea = document.querySelector('.textArea')
+        let startBtn = document.querySelector('.Start')
+
+
+        enterBtn.addEventListener('click', function () {
+            Paragraph.innerText = userPara.value
+            Timer = userTime.value
+            Time.innerText = userTime.value
+
+            paragraphValue = userPara.value
+            console.log(paragraphValue)
+            userTime.value = ""
+            userPara.value = ""
+
+        })
+
+        startBtn.addEventListener('click', function () {
+            intervalId = setInterval(() => {
+                if (Timer > 0) {
+                    Time.innerHTML = Timer;
+                    Timer--;
+                } else {
+                    clearInterval(intervalId);
+                    Time.innerHTML = "0";
+                    textArea.disabled = true;
+
+                    let textAreaValue = textArea.value;
+
+                    if (paragraphValue.trim() === textAreaValue.trim()) {
+                        Paragraph.innerHTML = `<h1 class="result">🎉 Congratulation...! <br>
+                You Completed Test with 100% Accuracy <br>
+                In Given Time</h1>`;
+                        alert('Times Up...!!')
+                    } else {
+                        Paragraph.innerHTML = `<h1 class="result2">❌ Test Finished <br>
+                Text Does Not Match <br> Better Luck Next Time..!</h1>`;
+                        alert('Times Up...!!')
+                    }
+                }
+            }, 1000);
+        });
+
+    </script>
+</body>
+
+</html>
